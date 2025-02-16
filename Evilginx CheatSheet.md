@@ -89,4 +89,17 @@
           bbb();
     ```
 
-    
+16. Redirector are good and can be used for having landing lure pages. /Redirector is where you can have the .html or .css.
+  - $ lures edit 0 redirector download_example
+
+17. bulk lure url is another very good feature. You can either use txt or csv or json.
+  - $ lures get-url 0 import <filepath>
+
+18. You can actually use evinginx as a proxy itself.. Say you have server in Russia, and user to be phishing is in US, we can use ti for example.
+  - $ proxy <option>
+  - $ proxy enable
+
+19. Blacklist Management - automatic blacklist of IP when there is no auth. You can remove the IP from blacklist from blacklist.txt file in .eviginx which
+is present in C:\users\.evilginx\blacklist.txt.
+  - $ blacklist <option>
+
