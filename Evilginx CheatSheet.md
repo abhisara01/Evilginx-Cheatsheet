@@ -102,4 +102,6 @@
 19. Blacklist Management - automatic blacklist of IP when there is no auth. You can remove the IP from blacklist from blacklist.txt file in .eviginx which
 is present in C:\users\.evilginx\blacklist.txt.
   - $ blacklist <option>
+Default redirect can be changed via $ config <redirect_url>
 
+20. Obfuscate to harden security.
